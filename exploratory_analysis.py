@@ -10,7 +10,12 @@ isotope_space = pd.read_sql("SELECT * FROM isotopes", connection)
 # Close the connection to the SQL database.
 connection.close()
 
-
+# Plot the isotope space for each time slice
 sns.relplot(data=isotope_space, x="d18O", y="d13C", col="TimePeriod", col_wrap=4, hue="Site")
+
+# Plot the site data
+site_data = isotope_space[isotope_space.Site == "h16_dsdp594"]
+sns.relplot(data=site_data, x="d18O", y="d13C", hue="TimePeriod")
+
 
 plt.show()
