@@ -10,7 +10,7 @@ from os.path import join  # isfile - to be used if required (see line 14)
 import sqlite3
 
 # Enter the path to the datasets
-path_to_data = "data"
+path_to_data = "data/PRISM_Pacific_data"
 
 # Enter the Time Periods we're investigating in the format ["Name", Start, End]. These time periods are derived from the
 # van der Weijst et al., 2020 paper.
