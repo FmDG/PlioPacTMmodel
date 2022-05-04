@@ -1,17 +1,15 @@
 %% Import the dataset
 
-prism_data = readtable("data/prism_data.csv");
+KM2_data = readtable("data/bounding_data/KM2.csv");
 
-%% Select only the '3500 ka - M2' data
+%% Print KM2 Data
 
-list_time_periods = ['3500 ka - M2' 'M2' 'mPWP-1' 'KM2' 'mPWP-2' ...
-    'G20' 'G20 - 2800 ka'];
+x = KM2_data.d18O;
+y = KM2_data.d13C;
 
-match = list_time_periods(1);
-selectorate = prism_data(matches(prism_data.TimePeriod, match),:);
-
-scatter(selectorate.d18O, selectorate.d13C)
-
+[tx,ty] = minboundtri(x,y);
+plot(x,y,'r+',tx,ty,'b-')
+text(KM2_data.d18O + 0.01, KM2_data.d13C + 0.01, KM2_data.Site, 'Fontsize', 10);
 
 
 
