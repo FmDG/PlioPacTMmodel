@@ -6,6 +6,7 @@ Attempting to build the first version of the model using the PRISM data held in 
 import pandas as pd
 import sqlite3
 import matplotlib.pyplot as plt
+import math
 
 
 def plot_dist(period, dataset, show=False):
@@ -42,15 +43,38 @@ def plot_dist(period, dataset, show=False):
         return
 
 
+def plot_subplots(dataset, periods, show=False):
+    squares = int(math.ceil(math.sqrt(len(periods))))
+    fig, axs = plt.subplots(squares, squares)
+
+    i, j = 0, 0
+    for x in periods:
+        subset = dataset[dataset.TimePeriod == x]
+        axs[i, j].scatter(x="d18O", y="d13C", data=subset, marker="+")
+        axs[i, j].set(xlim=[1.8, 4.2], ylim=[-1.0, 1.0], xlabel=r'$\delta^{18}$O', ylabel=r'$\delta^{13}$C', title=x)
+        j += 1
+        if j >= squares:
+            j = 0
+            i += 1
+
+    for ax in fig.get_axes():
+        ax.label_outer()
+
+    if show:
+        plt.show()
+
+
 # connect to the database
 connection = sqlite3.connect("data/prism_data.db")
 sites = pd.read_sql("SELECT * FROM isotopes", connection)
 connection.close()
 
 # list the time periods we're using for this first run of the model
-time_periods = ["3500 ka - M2", "M2", "mPWP-1", "KM2", "mPWP-2", "G20", "G20 - 2800 ka"]
+time_periods = ["3500 ka - M2", "M2", "mPWP-1", "KM2", "mPWP-2", "G20", "G20 - 2800 ka", "iNHG"]
 
-for x in time_periods:
-    plot_dist(x, sites)
+plot_subplots(sites, time_periods)
+
+for sx in time_periods:
+    plot_dist(sx, sites)
 
 plt.show()
