@@ -127,6 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# The dataset from PRISM and the MATLAB MinBoundSuite and the resources
 /data/PRISM_Pacific_data
 /MinBoundSuite/
 /resources/

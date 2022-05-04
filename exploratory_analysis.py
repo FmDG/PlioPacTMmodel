@@ -17,5 +17,8 @@ sns.relplot(data=isotope_space, x="d18O", y="d13C", col="TimePeriod", col_wrap=4
 site_data = isotope_space[isotope_space.Site == "h16_dsdp594"]
 sns.relplot(data=site_data, x="d18O", y="d13C", hue="TimePeriod")
 
+# Plot the TimePeriod data
+time_data = isotope_space[isotope_space.TimePeriod == "3500 ka - M2"]
+sns.relplot(data=time_data, x="d18O", y="d13C", hue="Site")
 
 plt.show()
