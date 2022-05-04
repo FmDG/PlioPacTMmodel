@@ -1,13 +1,13 @@
 """
-Exploring the data that exists within the PRISM data directory
+This file takes the files contained within the data folder (currently in gitignore due to data not being publicly
+accessible) and compiles them into one dataframe which is then stored in SQL database.
 
 """
 
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from os import listdir
 from os.path import join  # isfile - to be used if required (see line 14)
+import sqlite3
 
 # Enter the path to the datasets
 path_to_data = "data"
@@ -40,7 +40,19 @@ for entry in data_files:
 # Create a pandas DataFrame to store the dataset
 isotope_space = pd.DataFrame(isotope_values, columns=['Site', 'TimePeriod', 'd18O', "d13C"])
 
-# Iterate over all the time periods and plot the results in carbon and oxygen isotope space
-sns.relplot(data=isotope_space, x='d18O', y='d13C', col="TimePeriod", col_wrap=3, hue="Site")
+# Open a connection to the SQL database
+connector = sqlite3.connect("data/prism_data.db")
 
-plt.show()
+
+# Generates the table in the new database
+c = connector.cursor()
+c.execute("CREATE TABLE IF NOT EXISTS isotopes (Depth number)")
+connector.commit()
+
+# Writes the new dataframes to the database
+isotope_space.to_sql('isotopes', connector, if_exists='replace')
+connector.commit()
+
+# Closes the connection to the SQL database
+connector.close()
+
