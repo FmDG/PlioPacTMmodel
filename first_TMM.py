@@ -72,7 +72,7 @@ connection.close()
 # list the time periods we're using for this first run of the model
 time_periods = ["3500 ka - M2", "M2", "mPWP-1", "KM2", "mPWP-2", "G20", "G20 - 2800 ka", "iNHG"]
 
-plot_subplots(sites, time_periods)
+# plot_subplots(sites, time_periods)
 
 for sx in time_periods:
     plot_dist(sx, sites)
