@@ -7,7 +7,7 @@ accessible) and compiles them into one dataframe which is then stored in SQL dat
 import pandas as pd
 from os import listdir
 from os.path import join, isfile
-import sqlite3
+from re import sub
 
 
 def assess_means(path, periods, from_csv=True):
@@ -25,12 +25,12 @@ def assess_means(path, periods, from_csv=True):
     if from_csv:
         data_files = [f for f in listdir(path) if (".csv" in f)]
     else:
-        data_files = [f for f in listdir(path) if isfile(join(path_to_data, f))]
+        data_files = [f for f in listdir(path) if isfile(join(path, f))]
 
     # Read the csv files into a list
     isotope_values = []
     for entry in data_files:
-        data_set = pd.read_csv(join(path_to_data, entry))
+        data_set = pd.read_csv(join(path, entry))
         name = entry.strip(".csv")
         for period in periods:
             # Select the slice which lies within the time period
@@ -65,12 +65,12 @@ def generate_means(path, periods, from_csv=True):
     if from_csv:
         data_files = [f for f in listdir(path) if (".csv" in f)]
     else:
-        data_files = [f for f in listdir(path) if isfile(join(path_to_data, f))]
+        data_files = [f for f in listdir(path) if isfile(join(path, f))]
 
     # Read the csv files into a list
     isotope_values = []
     for entry in data_files:
-        data_set = pd.read_csv(join(path_to_data, entry))
+        data_set = pd.read_csv(join(path, entry))
         name = entry.strip(".csv")
         for period in periods:
             # Select the slice which lies within the time period
@@ -91,22 +91,21 @@ def generate_means(path, periods, from_csv=True):
     return isotope_space
 
 
-# Enter the path to the datasets
-path_to_data = "data/PRISM_Pacific_data"
+def clean_names(init_name):
+    mid_name = sub('.+_', '', init_name)
+    final_name = mid_name.strip(".csv")
+    return final_name
 
-# Enter the Time Periods we're investigating in the format ["Name", Start, End]. These time periods are derived from the
-# van der Weijst et al., 2020 paper.
-time_periods = [["3500 ka - M2", 3500, 3320],
-                ["M2", 3303, 3288],
-                ["mPWP-1", 3280, 3155],
-                ["KM2", 3148, 3120],
-                ["mPWP-2", 3105, 3030],
-                ["G20", 3025, 3000],
-                ["G20 - 2800 ka", 2985, 2800],
-                ["iNHG", 2800, 2700]]
 
-generate_means(path_to_data, time_periods).to_csv("data/prism_data.csv")
+def generate_full_data(path):
+    data_files = [f for f in listdir(path) if (".csv" in f)]
 
-# This assessment looks at the standard deviations and the number of samples being averaged in each case to make
-# sure that this is a reliable data source.
-assessment = assess_means(path_to_data, time_periods)
+    full_values = pd.DataFrame(columns=['Site', 'age_ka', 'd18o', "d13C"])
+
+    for file_name in data_files:
+        data_set = pd.read_csv(join(path, file_name))
+        name = clean_names(file_name)
+        data_set["Site"] = name
+        full_values = pd.concat([full_values, data_set], join="inner")
+
+    return full_values
