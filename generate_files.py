@@ -1,13 +1,13 @@
-"""
-This file takes the files contained within the data folder (currently in gitignore due to data not being publicly
-accessible) and compiles them into one dataframe which is then stored in SQL database.
-
-"""
-
 import pandas as pd
 from os import listdir
 from os.path import join, isfile
 from re import sub
+
+
+def clean_names(init_name):
+    mid_name = sub('.+_', '', init_name)
+    final_name = mid_name.strip(".csv")
+    return final_name
 
 
 def assess_means(path, periods, from_csv=True):
@@ -31,7 +31,7 @@ def assess_means(path, periods, from_csv=True):
     isotope_values = []
     for entry in data_files:
         data_set = pd.read_csv(join(path, entry))
-        name = entry.strip(".csv")
+        name = clean_names(entry)
         for period in periods:
             # Select the slice which lies within the time period
             section = data_set[data_set.age_ka.between(period[2], period[1])]
@@ -71,7 +71,7 @@ def generate_means(path, periods, from_csv=True):
     isotope_values = []
     for entry in data_files:
         data_set = pd.read_csv(join(path, entry))
-        name = entry.strip(".csv")
+        name = clean_names(entry)
         for period in periods:
             # Select the slice which lies within the time period
             section = data_set[data_set.age_ka.between(period[2], period[1])]
@@ -89,12 +89,6 @@ def generate_means(path, periods, from_csv=True):
     isotope_space = pd.DataFrame(isotope_values, columns=['Site', 'TimePeriod', 'd18O', "d13C"])
 
     return isotope_space
-
-
-def clean_names(init_name):
-    mid_name = sub('.+_', '', init_name)
-    final_name = mid_name.strip(".csv")
-    return final_name
 
 
 def generate_full_data(path):

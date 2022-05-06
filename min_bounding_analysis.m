@@ -14,7 +14,9 @@ modern_oceans = rmmissing(modern_oceans);
 % Adds a path to the minimum bounding triangle function
 addpath("MinBoundSuite/MinBoundSuite")
 
-[tx,ty] = minboundtri(modern_oceans.d18O, modern_oceans.d13C);
-plot(modern_oceans.d18O, modern_oceans.d13C,'r+',tx,ty,'b-')
-% text(modern_oceans.d18O + 0.01, modern_oceans.d13C + 0.01, modern_oceans.Core);
+figure(1)
+[tx,ty] = minboundtri(KM2_data.d18O, KM2_data.d13C);
+plot(KM2_data.d18O, KM2_data.d13C,'r+',tx,ty,'b-')
+
+text(KM2_data.d18O + 0.01, KM2_data.d13C + 0.01, KM2_data.Site);
 
