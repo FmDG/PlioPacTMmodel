@@ -1,10 +1,10 @@
-import numpy as np
-from pandas import read_csv, concat, DataFrame
-import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
+import numpy as np
+import seaborn as sns
+from pandas import read_csv, DataFrame
 from sklearn import metrics
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
 # Read the Pacific Modern Core Top Data
 pacific = read_csv('data/pacific_modern.csv')

@@ -1,19 +1,9 @@
 from generate_files import generate_means, assess_means, generate_full_data
+from methods.kn_cluster_analysis.kn_constants import time_periods
 
 
 # Enter the path to the datasets
 path_to_data = "data/PRISM_Pacific_data"
-
-# Enter the Time Periods we're investigating in the format ["Name", Start, End]. These time periods are derived from the
-# van der Weijst et al., 2020 paper.
-time_periods = [["3500 ka - M2", 3500, 3320],
-                ["M2", 3303, 3288],
-                ["mPWP-1", 3280, 3155],
-                ["KM2", 3148, 3120],
-                ["mPWP-2", 3105, 3030],
-                ["G20", 3025, 3000],
-                ["G20 - 2800 ka", 2985, 2800],
-                ["iNHG", 2800, 2700]]
 
 generate_means(path_to_data, time_periods).to_csv("data/prism_data.csv")
 

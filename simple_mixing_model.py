@@ -1,6 +1,7 @@
-from pandas import read_csv
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pandas import read_csv
+
 from model_functions import simple_mixing_model
 
 site_data = read_csv("data/prism_data.csv")

@@ -1,5 +1,5 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
 full_data = pd.read_csv("data/assessment.csv")
 full_data = full_data.dropna(subset=["d18O", "d13C"])

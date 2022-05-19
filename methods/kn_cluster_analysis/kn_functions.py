@@ -1,7 +1,8 @@
-from kn_constants import kmeans_kwargs
-from sklearn.metrics import silhouette_score
 from kneed import KneeLocator
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+from kn_constants import kmeans_kwargs
 
 
 def assess_cluster_model(scaled_input, max_runs=8, full_return=False):

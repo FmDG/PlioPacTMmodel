@@ -1,24 +1,47 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
-from kneed import KneeLocator
 from sklearn.cluster import KMeans
-from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score, adjusted_rand_score
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import LabelEncoder, MinMaxScaler, StandardScaler
-import numpy
+from sklearn.preprocessing import StandardScaler
 
-# Load the dataset
-pliocene = pd.read_csv("data/assessment.csv")
+path_to_pliocene_data = "data/assessment.csv"
+path_to_modern_data = "data/pacific_modern.csv"
+
+
+# Load the datasets
+pliocene = pd.read_csv(path_to_pliocene_data)
+modern = pd.read_csv(path_to_modern_data)
 
 # List of Sites Used
-sites_list = ["odp1018", "odp1148", "odp1014", "odp1125", "odp1208", "odp1239", "dsdp594", "odp1143", "odp1241",
-              "odp806", "odp849", "dsdp593"]
-# List of time period
-time_periods = ["3500 ka - M2", "M2", "mPWP-1", "KM2", "mPWP-2", "G20", "G20 - 2800 ka", "iNHG"]
-t_0 = 0
+sites_list = [
+    "odp1018",
+    "odp1148",
+    "odp1014",
+    "odp1125",
+    "odp1208",
+    "odp1239",
+    "dsdp594",
+    "odp1143",
+    "odp1241",
+    "odp806",
+    "odp849",
+    "dsdp593"
+]
 
+# List of time periods
+time_periods = [
+    "3500 ka - M2",
+    "M2",
+    "mPWP-1",
+    "KM2",
+    "mPWP-2",
+    "G20",
+    "G20 - 2800 ka",
+    "iNHG"
+]
+
+t_0 = 0
 # Number of clusters in the final model
 n_clusters = 4
 
@@ -54,7 +77,10 @@ combi_pipe = Pipeline(
 )
 
 # Select the data which fits the time period selected
-time_data = pliocene[pliocene.TimePeriod == time_periods[t_0]]
+time_data = pliocene[
+    pliocene.TimePeriod == time_periods[t_0]
+]
+
 # Drop any empty features
 time_data = time_data.dropna()
 # Convert to a numpy array
@@ -63,23 +89,29 @@ features = time_data[["d18O", "d13C"]].to_numpy()
 # Fit the KMeans model to the data
 combi_pipe.fit(features)
 
-# Combine the results in a dataframe
-predicted_data = pd.DataFrame(
-    combi_pipe["preprocessor"].transform(features),
-    columns=["scaled_d18O", "scaled_d13C"],
-)
-
-predicted_data["predicted_cluster"] = combi_pipe["cluster"]["kmeans"].labels_
+# Add the results to a dataframe
+time_data["predicted_cluster"] = combi_pipe["cluster"]["kmeans"].labels_
 
 # --- PLOTTING REGIME ---
-fig, axs = plt.subplots(1, 2)
+fig, ax = plt.subplots()
 # Add the title of the relevant time period
+
 fig.suptitle(time_periods[t_0])
 
-sns.scatterplot(data=predicted_data, x="scaled_d18O", y="scaled_d13C", hue="predicted_cluster", ax=axs[0])
-axs[1].scatter(time_data.d18O, time_data.d13C)
+sns.scatterplot(
+    data=time_data,
+    x="d18O",
+    y="d13C",
+    hue="predicted_cluster",
+    ax=ax
+)
+
 for k, v in time_data[["d18O", "d13C", "Site"]].iterrows():
-    axs[1].annotate(v[2], (v[0], v[1]))
+    ax.annotate(
+        v[2],
+        (v[0], v[1])
+    )
+
 plt.show()
 
 # --- PERFORMANCE RESULTS ---
