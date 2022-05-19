@@ -38,8 +38,8 @@ kmeans_kwargs = {
 axis_args = {
     "xlabel": r'$\delta^{18}$O',
     "ylabel": r'$\delta^{13}$C',
-    "xlim": [1.5, 4.5],
-    "ylim": [-1, 2]
+    "xlim": [0.5, 5.5],
+    "ylim": [-2, 3]
 }
 
 # These are time intervals from a variety of sources covering larger areas than the van der Weijst section

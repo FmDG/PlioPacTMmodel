@@ -1,5 +1,5 @@
 from matplotlib.lines import Line2D
-from matplotlib.pyplot import subplots, savefig
+from matplotlib.pyplot import subplots, savefig, show
 from pandas import read_csv
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
@@ -63,7 +63,10 @@ for period in time_sets:
             markersize=5
         ) for i in range(num_clusters)]
 
-    ax.legend(handles=legend_elements, loc='upper right')
+    ax.legend(
+        handles=legend_elements,
+        loc='upper right'
+    )
 
     # Annotate all the values in the plot
     for _, values in selected.iterrows():
@@ -71,5 +74,5 @@ for period in time_sets:
 
     ax.set(title=period[0], **axis_args)
 
-    savefig(path_to_exit_figure)
-
+    # savefig(path_to_exit_figure)
+show()
