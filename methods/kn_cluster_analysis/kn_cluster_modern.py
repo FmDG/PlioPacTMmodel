@@ -1,12 +1,15 @@
 from matplotlib.lines import Line2D
 from matplotlib.pyplot import subplots, show
+from numpy import append, sqrt, concatenate, linspace
 from pandas import read_csv
+from scipy import interpolate
+from scipy.spatial import ConvexHull
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
 from methods.general.general_constants import kmeans_kwargs, axis_args
-from methods.kn_cluster_analysis.kn_functions import assess_cluster_model
 from methods.general.general_functions import within_stddev
+from methods.kn_cluster_analysis.kn_functions import assess_cluster_model
 
 path_to_modern_data = "data/pacific_modern.csv"
 
@@ -59,6 +62,52 @@ legend_elements = [
     ) for i in range(num_clusters)]
 
 ax.legend(handles=legend_elements, loc='upper right')
+
+# Draw enclosure around the points to better visualise the clusters
+for i in selected.predicted_cluster.unique():
+    # For each cluster generate the d18O and d13C values.
+    points = selected[selected.predicted_cluster == i][['d18O', 'd13C']].values
+    # Generate a Convex Hull from these points.
+    hull = ConvexHull(points)
+    # Draw a shape covering the d18O and d13C points, repeating the last point (hence the trailing 0) so as to close
+    # the shape.
+    x_hull = append(
+        points[hull.vertices, 0],
+        points[hull.vertices, 0][0]
+    )
+
+    y_hull = append(
+        points[hull.vertices, 1],
+        points[hull.vertices, 1][0]
+    )
+
+    # This then smooths the fill shapes over an area so that they look nicer to the eye than the convex hull.
+    distance = sqrt(
+        (x_hull[:-1] - x_hull[1:]) ** 2 + (y_hull[:-1] - y_hull[1:]) ** 2
+    )
+
+    distance_along = concatenate(([0], distance.cumsum()))
+    spline, _ = interpolate.splprep(
+        [x_hull, y_hull],
+        u=distance_along,
+        s=0
+    )
+
+    interpolated_distance = linspace(
+        distance_along[0],
+        distance_along[-1],
+        50
+    )
+
+    interpolated_d18O, interpolated_d13C = interpolate.splev(interpolated_distance, spline)
+    # plot shape
+    ax.fill(
+        interpolated_d18O,
+        interpolated_d13C,
+        '--',
+        c=colours[i],
+        alpha=0.2
+    )
 
 ax.set(title="Modern", **axis_args)
 

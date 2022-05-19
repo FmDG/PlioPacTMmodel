@@ -1,11 +1,12 @@
+from matplotlib.pyplot import subplots
 from numpy import arange, sqrt
 from pandas import DataFrame
-from matplotlib.pyplot import subplots
 from seaborn import scatterplot
-from methods.general.general_constants import axis_args
 from sklearn import metrics
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+
+from methods.general.general_constants import axis_args
 
 
 def isotope_by_factor(dataset, factor, minimum, maximum, step_size):
