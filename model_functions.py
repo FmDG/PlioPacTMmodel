@@ -1,6 +1,7 @@
 from numpy import arange
-from maths_functions import end_member_solver
 from pandas import DataFrame
+
+from maths_functions import end_member_solver
 
 
 def simple_mixing_model(d18o, d13c, input_frame, start=0.30, stop=0.70):

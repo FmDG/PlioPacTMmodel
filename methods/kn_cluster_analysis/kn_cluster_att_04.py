@@ -1,24 +1,25 @@
-from pandas import read_csv
-from kn_constants import time_periods, kmeans_kwargs, axis_args
-from kn_functions import assess_cluster_model
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans
-from matplotlib.pyplot import subplots, savefig
 from matplotlib.lines import Line2D
+from matplotlib.pyplot import subplots, savefig
+from pandas import read_csv
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
 
-path_to_pliocene_data = "data/prism_data.csv"
+from kn_constants import time_sets, kmeans_kwargs, axis_args
+from kn_functions import assess_cluster_model
+
+path_to_pliocene_data = "data/pacific_pliocene.csv"
 
 # Read the datasets into pandas dataframes
 plio_data = read_csv(path_to_pliocene_data)
 
 # Select time period
-for period in time_periods:
+for period in time_sets:
 
-    path_to_exit_figure = "figures/clusters/{}.png".format(period)
-    path_to_exit_data = "data/cluster_data/{}.csv".format(period)
+    path_to_exit_figure = "figures/clusters/{}.png".format(period[0])
+    path_to_exit_data = "data/cluster_data/{}.csv".format(period[0])
 
     # Select and drop any empty features from run
-    selected = plio_data[plio_data.TimePeriod == period]
+    selected = plio_data[plio_data.TimePeriod == period[0]]
     selected = selected.dropna(subset=["d18O", "d13C"])
     # Scale the features to sit with a mean of 0 and a std. dev of 1
     scaled = StandardScaler().fit_transform(selected[["d18O", "d13C"]])
@@ -31,7 +32,7 @@ for period in time_periods:
     selected["predicted_cluster"] = model_run.labels_
 
     # Write the data to a csv file
-    # selected.to_csv(path_to_exit_data)
+    selected.to_csv(path_to_exit_data)
 
     # Define and map colors onto the clusters defined above
     colours = ['r', 'g', 'b', 'y', 'm', 'c', 'k']
@@ -68,7 +69,7 @@ for period in time_periods:
     for _, values in selected.iterrows():
         ax.annotate(values.Site, ((values.d18O + 0.01), (values.d13C + 0.01)), fontsize="xx-small")
 
-    ax.set(title=period, **axis_args)
+    ax.set(title=period[0], **axis_args)
 
     savefig(path_to_exit_figure)
 

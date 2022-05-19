@@ -1,17 +1,12 @@
-import tarfile
-import urllib
-
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
-
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score, adjusted_rand_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
-
 
 datafile = "data/kn_cluster_intro_data/data.csv"
 labels_file = "../../data/kn_cluster_intro_data/labels.csv"

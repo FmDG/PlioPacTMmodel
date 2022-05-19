@@ -1,12 +1,9 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from kneed import KneeLocator
-from sklearn.metrics import silhouette_score
-
 
 path_to_pliocene_data = "data/assessment.csv"
 path_to_modern_data = "data/pacific_modern.csv"

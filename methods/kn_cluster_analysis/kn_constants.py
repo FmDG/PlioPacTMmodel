@@ -17,14 +17,14 @@ sites_list = [
 
 # List of time periods
 time_periods = [
-    "3500 ka - M2",
-    "M2",
-    "mPWP-1",
-    "KM2",
-    "mPWP-2",
-    "G20",
-    "G20 - 2800 ka",
-    "iNHG"
+    ["3500 ka - M2", 3500, 3320],
+    ["M2", 3303, 3288],
+    ["mPWP-1", 3280, 3155],
+    ["KM2", 3148, 3120],
+    ["mPWP-2", 3105, 3030],
+    ["G20", 3025, 3000],
+    ["G20 - 2800 ka", 2985, 2800],
+    ["iNHG", 2800, 2700]
 ]
 
 # Parameters for KMeans function
@@ -41,3 +41,11 @@ axis_args = {
     "xlim": [1.5, 4.5],
     "ylim": [-1, 2]
 }
+
+# These are time intervals from a variety of sources covering larger areas than the van der Weijst section
+time_sets = [
+    ["iNHG", 2750, 2400],
+    ["mPWP", 3300, 3000],
+    ["Mid-Pliocene", 4000, 3300],
+    ["Early Pleistocene", 2400, 1500]
+]

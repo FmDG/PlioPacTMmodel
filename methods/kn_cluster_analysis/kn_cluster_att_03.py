@@ -1,7 +1,6 @@
-from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
 import pandas as pd
+from sklearn.cluster import KMeans
 
 init_dataset = pd.read_csv("data/assessment.csv")
 

@@ -1,10 +1,11 @@
+from matplotlib.lines import Line2D
+from matplotlib.pyplot import subplots, show
 from pandas import read_csv
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+
 from kn_constants import kmeans_kwargs, axis_args
 from kn_functions import assess_cluster_model, within_stddev
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans
-from matplotlib.pyplot import subplots, show
-from matplotlib.lines import Line2D
 
 path_to_modern_data = "data/pacific_modern.csv"
 
