@@ -38,6 +38,6 @@ kmeans_kwargs = {
 axis_args = {
     "xlabel": r'$\delta^{18}$O',
     "ylabel": r'$\delta^{13}$C',
-    "xlim": [0, 5],
-    "ylim": [-2, 3]
+    "xlim": [1.5, 4.5],
+    "ylim": [-1, 2]
 }
