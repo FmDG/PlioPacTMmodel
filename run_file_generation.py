@@ -1,5 +1,5 @@
 from generate_files import generate_means, assess_means, generate_full_data
-from methods.kn_cluster_analysis.kn_constants import time_periods
+from methods.general.general_constants import time_periods
 
 
 # Enter the path to the datasets

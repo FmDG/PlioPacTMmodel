@@ -2,7 +2,7 @@ from kneed import KneeLocator
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
-from kn_constants import kmeans_kwargs
+from methods.general.general_constants import kmeans_kwargs
 
 
 def assess_cluster_model(scaled_input, max_runs=8, full_return=False):
@@ -31,18 +31,3 @@ def assess_cluster_model(scaled_input, max_runs=8, full_return=False):
         return kl.elbow, sse, silhouettes
     else:
         return kl.elbow
-
-
-def within_stddev(dataset, parameter, num_devs=2):
-    """
-    Returns the dataset with all values that are outside of the standard deviation * 'num-devs' of the mean.
-    :param dataset:
-    :param parameter:
-    :param num_devs:
-    :return: the dataset selecting only those values which aren't extreme
-    """
-    return dataset[
-        dataset[parameter].between(
-            dataset[parameter].mean() - (num_devs * dataset[parameter].std()),
-            dataset[parameter].mean() + (num_devs * dataset[parameter].std()))
-    ]

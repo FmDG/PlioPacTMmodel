@@ -4,7 +4,7 @@ from pandas import read_csv
 
 from model_functions import simple_mixing_model
 
-site_data = read_csv("data/prism_data.csv")
+site_data = read_csv("../../data/prism_data.csv")
 
 section_name = "G20 - 2800 ka"
 

@@ -1,5 +1,5 @@
 from generate_files import assess_means
-from kn_constants import time_sets
+from methods.general.general_constants import time_sets
 
 # Enter the path to the datasets
 path_to_data = "data/PRISM_Pacific_data"

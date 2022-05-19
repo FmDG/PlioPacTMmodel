@@ -4,8 +4,9 @@ from pandas import read_csv
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
-from kn_constants import kmeans_kwargs, axis_args
-from kn_functions import assess_cluster_model, within_stddev
+from methods.general.general_constants import kmeans_kwargs, axis_args
+from methods.kn_cluster_analysis.kn_functions import assess_cluster_model
+from methods.general.general_functions import within_stddev
 
 path_to_modern_data = "data/pacific_modern.csv"
 
