@@ -5,6 +5,7 @@ from seaborn import scatterplot
 from sklearn import metrics
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+from geopy.distance import distance
 
 from methods.general.general_constants import axis_args
 
@@ -155,5 +156,29 @@ def lgm_by_factor(dataset, factor, parameter):
         transform=ax.transAxes
     )
 
+    ax.set(
+        xlabel=factor,
+        ylabel=parameter
+    )
+
     print('Root Mean Squared Error:', sqrt(metrics.mean_squared_error(y_test, y_predict)))
     print(print_string)
+
+
+def value_by_distance(dataset, value):
+    values_over_distances = []
+    distances = []
+
+    for _, x in dataset.iterrows():
+        for _, y in dataset.iterrows():
+            if x.Core != y.Core:
+                distance_value = distance(
+                    (x.latitude, x.longitude),
+                    (y.latitude, y.longitude)
+                ).km
+
+                if (distance_value != 0) and (distance_value not in distances):
+                    del_value = float(x[value] - y[value])
+                    values_over_distances.append(del_value / distance_value)
+                    distances.append(distance)
+    return values_over_distances

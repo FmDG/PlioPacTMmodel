@@ -1,10 +1,13 @@
-import matplotlib.pyplot as plt
+from matplotlib.pyplot import show
 from pandas import read_csv
+from os import chdir
+from scipy.stats import pearsonr, spearmanr
 
 from methods.general.general_functions import within_stddev
 from statistics_functions import isotope_by_factor, plot_by_factor, lgm_by_factor
 
 # Read the Pacific Modern Core Top Data
+chdir("../..")
 pacific = read_csv('data/pacific_modern.csv')
 
 # Remove values that are more than 3 standard deviations away from the mean
@@ -35,23 +38,29 @@ plot_by_factor(
 )
 
 parameter, step_size = "depth", 1000
+depth_influence = isotope_by_factor(
+    dataset=pacific,
+    factor=parameter,
+    minimum=-0,
+    maximum=5000,
+    step_size=step_size
+)
+
 plot_by_factor(
     dataset=pacific,
-    factor_dataset=isotope_by_factor(
-        dataset=pacific,
-        factor=parameter,
-        minimum=-0,
-        maximum=5000,
-        step_size=step_size
-    ),
+    factor_dataset=depth_influence,
     factor=parameter,
     step_size=step_size
 )
 
-lgm_by_factor(pacific, "depth", "d13C")
-lgm_by_factor(pacific, "latitude", "d13C")
-lgm_by_factor(pacific, "depth", "d18O")
-lgm_by_factor(pacific, "latitude", "d18O")
+for x in ["latitude", "depth", "longitude"]:
+    for y in ["d18O", "d13C"]:
+        pearson_stat, p_01 = pearsonr(pacific[x], pacific[y])
+        print('For {x} against {y}, Pearson statistics are stat={stats}, p={p_val}'.format(
+            x=x,
+            y=y,
+            stats=pearson_stat,
+            p_val=p_01
+        ))
 
-plt.show()
-
+show()
