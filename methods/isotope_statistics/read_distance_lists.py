@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import json
+from json import load
 from os import chdir
 import numpy as np
 
@@ -7,13 +7,13 @@ import numpy as np
 # Read the d18O/distance data from write_distance_lists.py
 chdir("../..")
 with open("data/permanent_lists/pacific_core_distances.json", 'r') as f:
-    pacific_d18O_by_distance = json.load(f)
+    pacific_d18O_by_distance = load(f)
 
 with open("data/permanent_lists/southern_core_distances.json", 'r') as f:
-    southern_d18O_by_distance = json.load(f)
+    southern_d18O_by_distance = load(f)
 
 with open("data/permanent_lists/atlantic_core_distances.json", 'r') as f:
-    atlantic_d18O_by_distance = json.load(f)
+    atlantic_d18O_by_distance = load(f)
 
 # This is the distance between 1209 and 1208, and the d18O difference observed.
 print("{}km between 1209 and 1208, means a difference of 0.5 per mil is about {:.4f} per km".format(387.5, (0.5/387.5)))

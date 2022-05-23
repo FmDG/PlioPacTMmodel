@@ -1,6 +1,6 @@
 from pandas import read_csv
 from os import chdir
-import json
+from json import dump
 
 from methods.general.general_functions import within_stddev
 from statistics_functions import value_by_distance
@@ -36,10 +36,10 @@ atlantic_d18O_by_distance = value_by_distance(
 
 # Store these values in a JSON file to be used in the file read_distance_lists.py
 with open("data/permanent_lists/pacific_core_distances.json", 'w') as f:
-    json.dump(pacific_d18O_by_distance, f, indent=2)
+    dump(pacific_d18O_by_distance, f, indent=2)
 
 with open("data/permanent_lists/southern_core_distances.json", 'w') as f:
-    json.dump(southern_d18O_by_distance, f, indent=2)
+    dump(southern_d18O_by_distance, f, indent=2)
 
 with open("data/permanent_lists/atlantic_core_distances.json", 'w') as f:
-    json.dump(atlantic_d18O_by_distance, f, indent=2)
+    dump(atlantic_d18O_by_distance, f, indent=2)
