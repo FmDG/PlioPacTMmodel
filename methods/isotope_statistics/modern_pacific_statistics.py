@@ -1,7 +1,7 @@
 from matplotlib.pyplot import show
 from pandas import read_csv
 from os import chdir
-from scipy.stats import pearsonr, spearmanr
+from scipy.stats import pearsonr
 
 from methods.general.general_functions import within_stddev
 from statistics_functions import isotope_by_factor, plot_by_factor, lgm_by_factor

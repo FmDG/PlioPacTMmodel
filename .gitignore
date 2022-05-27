@@ -129,8 +129,7 @@ dmypy.json
 .pyre/
 
 # The dataset from PRISM and the MATLAB MinBoundSuite and the resources
-/data/PRISM_Pacific_data
-/data/kn_cluster_intro_data
+/data
 /MinBoundSuite/
 /resources/
 /figures/

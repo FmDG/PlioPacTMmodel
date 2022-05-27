@@ -165,8 +165,9 @@ def lgm_by_factor(dataset, factor, parameter):
     print(print_string)
 
 
-def value_by_distance(dataset, value):
+def value_by_distance(dataset, value, differences=False):
     values_over_distances = []
+    difference_d18O = []
     distances = []
 
     for _, x in dataset.iterrows():
@@ -181,4 +182,8 @@ def value_by_distance(dataset, value):
                     del_value = float(x[value] - y[value])
                     values_over_distances.append(del_value / distance_value)
                     distances.append(distance)
-    return values_over_distances
+                    difference_d18O.append(del_value)
+    if differences:
+        return values_over_distances, difference_d18O
+    else:
+        return values_over_distances
