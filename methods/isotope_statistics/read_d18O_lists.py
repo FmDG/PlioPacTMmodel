@@ -4,7 +4,7 @@ from os import chdir
 import numpy as np
 
 
-# Read the d18O/distance data from write_distance_lists.py
+# Read the d18O/distance data from write_gradient_lists.py
 chdir("../..")
 with open("data/permanent_lists/pacific_d18O_differences.json", 'r') as f:
     pacific_d18Os = load(f)

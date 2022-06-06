@@ -1,11 +1,12 @@
 from matplotlib.pyplot import subplots
-from numpy import arange, sqrt
+from numpy import arange, sqrt, mean
 from pandas import DataFrame
 from seaborn import scatterplot
 from sklearn import metrics
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from geopy.distance import distance
+from scipy.stats import sem, expon
 
 from methods.general.general_constants import axis_args
 
@@ -165,9 +166,9 @@ def lgm_by_factor(dataset, factor, parameter):
     print(print_string)
 
 
-def value_by_distance(dataset, value, differences=False):
+def value_by_distance(dataset, value, full=False):
     values_over_distances = []
-    difference_d18O = []
+    full_values = []
     distances = []
 
     for _, x in dataset.iterrows():
@@ -179,11 +180,19 @@ def value_by_distance(dataset, value, differences=False):
                 ).km
 
                 if (distance_value != 0) and (distance_value not in distances):
-                    del_value = float(x[value] - y[value])
+                    del_value = abs(float(x[value] - y[value]))
                     values_over_distances.append(del_value / distance_value)
                     distances.append(distance)
-                    difference_d18O.append(del_value)
-    if differences:
-        return values_over_distances, difference_d18O
+                    full_values.append([del_value, distance_value, (del_value / distance_value)])
+    if full:
+        return full_values
     else:
         return values_over_distances
+
+
+def plotting_confidence_intervals(gradient):
+    confidence_intervals = expon.interval(alpha=0.95, loc=mean(gradient), scale=sem(gradient))
+    high = mean(gradient) + confidence_intervals[1]
+    low = mean(gradient) - confidence_intervals[0]
+    m = mean(gradient)
+    return m, high, low
