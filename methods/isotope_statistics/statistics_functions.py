@@ -166,14 +166,14 @@ def lgm_by_factor(dataset, factor, parameter):
     print(print_string)
 
 
-def value_by_distance(dataset, value, full=False):
+def value_by_distance(dataset, value, full=False, core_name="Core"):
     values_over_distances = []
     full_values = []
     distances = []
 
     for _, x in dataset.iterrows():
         for _, y in dataset.iterrows():
-            if x.Core != y.Core:
+            if x[core_name] != y[core_name]:
                 distance_value = distance(
                     (x.latitude, x.longitude),
                     (y.latitude, y.longitude)
