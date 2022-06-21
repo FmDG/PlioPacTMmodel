@@ -1,10 +1,12 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pandas import read_csv
+from os import chdir
 
 from model_functions import simple_mixing_model
 
-site_data = read_csv("../../data/prism_data.csv")
+chdir("../..")
+site_data = read_csv("data/prism_data.csv")
 
 section_name = "G20 - 2800 ka"
 

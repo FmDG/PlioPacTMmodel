@@ -9,7 +9,7 @@ from os import chdir
 # Read the Pacific Modern Core Top Data
 chdir("../..")
 
-core_tops = pd.read_csv("../../data/schmittner_2017.csv")
+core_tops = pd.read_csv("data/schmittner_2017.csv")
 core_tops = core_tops.dropna(subset=["d18O", "d13C"])
 
 core_tops = within_stddev(
@@ -22,7 +22,7 @@ core_tops = within_stddev(
     num_devs=3
 )
 
-coastline_shp_path = "../../data/coastlines/ne_10m_coastline.shp"
+coastline_shp_path = "data/coastlines/ne_10m_coastline.shp"
 # Reading the shape file by using reader function of the shape lib
 coastline_sf = shp.Reader(coastline_shp_path)
 
@@ -40,7 +40,8 @@ sns.scatterplot(
     y="latitude",
     hue="d18O",
     palette="viridis",
-    ax=ax
+    ax=ax,
+    marker='o'
 )
 
 plt.show()
