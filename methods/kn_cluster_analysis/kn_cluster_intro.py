@@ -23,7 +23,9 @@ from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
+from os import chdir
 
+chdir("../..")
 features, true_labels = make_blobs(
     n_samples=200,
     centers=3,

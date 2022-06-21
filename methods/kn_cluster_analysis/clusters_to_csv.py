@@ -1,7 +1,9 @@
-from os import listdir
+from os import listdir, chdir
 from os.path import join, isfile
 
 import pandas as pd
+
+chdir("../..")
 
 latitude_data = pd.read_csv("data/cluster_data/site_info.csv")
 latitude_data = latitude_data.set_index('Site')

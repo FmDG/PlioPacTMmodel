@@ -4,7 +4,9 @@ from sklearn.datasets import make_moons
 from sklearn.metrics import adjusted_rand_score
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
+from os import chdir
 
+chdir("../..")
 features, true_labels = make_moons(
     n_samples=250, noise=0.05, random_state=42
 )

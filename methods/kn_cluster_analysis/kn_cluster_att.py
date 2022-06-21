@@ -3,11 +3,14 @@ from matplotlib.pyplot import subplots, show
 from pandas import read_csv
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+from os import chdir
 
 from methods.general.general_constants import time_sets, kmeans_kwargs, axis_args
 from methods.kn_cluster_analysis.kn_functions import assess_cluster_model
 
+chdir("../..")
 path_to_pliocene_data = "data/pacific_pliocene.csv"
+
 
 # Read the datasets into pandas dataframes
 plio_data = read_csv(path_to_pliocene_data)

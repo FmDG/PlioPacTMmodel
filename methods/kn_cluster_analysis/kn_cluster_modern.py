@@ -6,11 +6,13 @@ from scipy import interpolate
 from scipy.spatial import ConvexHull
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+from os import chdir
 
 from methods.general.general_constants import kmeans_kwargs, axis_args
 from methods.general.general_functions import within_stddev
 from methods.kn_cluster_analysis.kn_functions import assess_cluster_model
 
+chdir("../..")
 path_to_modern_data = "data/pacific_modern.csv"
 
 # Read the datasets into pandas dataframe

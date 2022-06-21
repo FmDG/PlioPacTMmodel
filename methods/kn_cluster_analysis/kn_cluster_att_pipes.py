@@ -4,7 +4,9 @@ import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
+import os
 
+os.chdir("../..")
 path_to_pliocene_data = "data/assessment.csv"
 path_to_modern_data = "data/pacific_modern.csv"
 

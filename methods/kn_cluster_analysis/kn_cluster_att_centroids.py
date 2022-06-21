@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.cluster import KMeans
+import os
 
+os.chdir("../..")
 init_dataset = pd.read_csv("data/assessment.csv")
 
 # List of time period
