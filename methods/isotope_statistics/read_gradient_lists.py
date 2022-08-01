@@ -1,6 +1,7 @@
-import matplotlib.pyplot as plt
 from json import load
 from os import chdir
+
+import matplotlib.pyplot as plt
 import numpy as np
 
 from methods.isotope_statistics.statistics_functions import plotting_confidence_intervals

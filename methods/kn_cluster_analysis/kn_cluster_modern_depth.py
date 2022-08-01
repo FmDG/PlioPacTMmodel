@@ -129,4 +129,34 @@ ax1.scatter(
 )
 ax1.set(ylabel="Latitude ({})".format(r'$\degree$'), xlabel="Depth (m)", ylim=[-90, 90])
 
+
+# Figure 3 - depth and clusters
+# Define the figure to be in 3D
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+
+# Plot the clusters
+ax.scatter3D(
+    xs=selected.longitude, ys=selected.latitude, zs=(selected.depth * -1),
+    c=selected.cluster_colour,
+    marker='o',
+    s=10
+)
+
+ax.set(xlabel="Longitude", ylabel="Latitude", zlabel="Depth")
+
+# Legend elements are created independently of MATPLOTLIB functions
+legend_elements = [
+    Line2D(
+        [0], [0],
+        marker='o',
+        color='w',
+        label='Cluster {}'.format(i+1),
+        markerfacecolor=colours[i],
+        markersize=5
+    ) for i in range(num_clusters)]
+
+ax.legend(handles=legend_elements, loc='upper right')
+
+
 show()

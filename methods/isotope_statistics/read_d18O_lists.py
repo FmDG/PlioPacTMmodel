@@ -1,8 +1,8 @@
-import matplotlib.pyplot as plt
 from json import load
 from os import chdir
-import numpy as np
 
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Read the d18O/distance data from write_gradient_lists.py
 chdir("../..")

@@ -1,10 +1,11 @@
-import numpy as np
-import pandas as pd
-import shapefile as shp
-import matplotlib.pyplot as plt
-import seaborn as sns
-from methods.general.general_functions import within_stddev
 from os import chdir
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+import shapefile as shp
+
+from methods.general.general_functions import within_stddev
 
 # Read the Pacific Modern Core Top Data
 chdir("../..")

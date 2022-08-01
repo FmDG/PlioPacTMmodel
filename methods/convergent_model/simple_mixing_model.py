@@ -1,7 +1,8 @@
+from os import chdir
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pandas import read_csv
-from os import chdir
 
 from model_functions import simple_mixing_model
 
