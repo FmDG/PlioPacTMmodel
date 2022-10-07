@@ -31,13 +31,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/cluster_data/3500 ka - M2.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/data/cluster_data/Early Pleistocene.csv">
           <value>
             <Attribute>
@@ -59,42 +52,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/cluster_data/mPWP-1.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/data/cluster_data/mPWP.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/core_tops/all_core_tops.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/core_tops/atlantic_core_tops.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/core_tops/indian_core_tops.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/core_tops/pacific_core_tops.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -116,34 +74,6 @@
           </value>
         </entry>
         <entry key="/data/modern_oceans.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/outliers_removed/modern_atlantic.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/outliers_removed/modern_oceans.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/outliers_removed/pacific_modern.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/outliers_removed/pacific_pliocene.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

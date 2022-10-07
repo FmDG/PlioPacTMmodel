@@ -129,7 +129,6 @@ dmypy.json
 .pyre/
 
 # The dataset from PRISM and the MATLAB MinBoundSuite and the resources
-/data
 /MinBoundSuite/
 /resources/
 /figures/

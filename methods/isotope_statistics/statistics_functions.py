@@ -65,7 +65,7 @@ def isotope_by_factor(dataset, factor, minimum, maximum, step_size):
     )
 
 
-def plot_by_factor(dataset, factor_dataset, factor, step_size):
+def plot_by_factor(dataset, factor_dataset, factor, step_size, fig_title="Modern Ocean Core Tops"):
     # Plot the Results
     fig, axs = subplots(
         nrows=1,
@@ -73,7 +73,7 @@ def plot_by_factor(dataset, factor_dataset, factor, step_size):
         figsize=(14, 7)
     )
 
-    fig.suptitle("Modern Ocean Core Tops")
+    fig.suptitle(fig_title)
 
     scatterplot(
         data=dataset,

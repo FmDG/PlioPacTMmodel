@@ -4,7 +4,7 @@ from os import chdir
 from scipy.stats import pearsonr
 
 from methods.general.general_functions import within_stddev
-from statistics_functions import isotope_by_factor, plot_by_factor, lgm_by_factor
+from statistics_functions import isotope_by_factor, plot_by_factor
 
 # Read the Pacific Modern Core Top Data
 chdir("../..")
@@ -34,7 +34,8 @@ plot_by_factor(
     dataset=pacific,
     factor_dataset=latitude_influence,
     factor=parameter,
-    step_size=step_size
+    step_size=step_size,
+    fig_title="Influence of Latitude on Pacific Isotopes"
 )
 
 parameter, step_size = "depth", 1000
@@ -50,7 +51,8 @@ plot_by_factor(
     dataset=pacific,
     factor_dataset=depth_influence,
     factor=parameter,
-    step_size=step_size
+    step_size=step_size,
+    fig_title="Influence of Depth on Pacific Isotopes"
 )
 
 for x in ["latitude", "depth", "longitude"]:
