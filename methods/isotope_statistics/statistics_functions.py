@@ -190,8 +190,8 @@ def value_by_distance(dataset, value, full=False, core_name="Core"):
         return values_over_distances
 
 
-def plotting_confidence_intervals(gradient):
-    confidence_intervals = expon.interval(alpha=0.95, loc=mean(gradient), scale=sem(gradient))
+def plotting_confidence_intervals(gradient, conf_int=95):
+    confidence_intervals = expon.interval(alpha=(conf_int/100), loc=mean(gradient), scale=sem(gradient))
     high = mean(gradient) + confidence_intervals[1]
     low = mean(gradient) - confidence_intervals[0]
     m = mean(gradient)

@@ -59,6 +59,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/distance_data/atlantic_distances_1000.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/distance_data/pacific_distances_400.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/full_dataset.csv">
           <value>
             <Attribute>
