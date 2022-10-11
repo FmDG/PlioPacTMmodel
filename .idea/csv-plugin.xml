@@ -66,6 +66,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/distance_data/pacific_distances_3000.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/distance_data/pacific_distances_400.csv">
           <value>
             <Attribute>
@@ -116,6 +123,20 @@
           </value>
         </entry>
         <entry key="/data/schmittner_2017.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/selected_core_tops/atlantic_core_tops.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/selected_core_tops/pacific_core_tops.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
