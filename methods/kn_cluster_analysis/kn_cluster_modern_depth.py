@@ -6,7 +6,6 @@ from matplotlib.pyplot import subplots, show
 from pandas import read_csv
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
-from shapefile import Reader
 
 from methods.general.general_constants import kmeans_kwargs
 from methods.general.general_functions import within_stddev

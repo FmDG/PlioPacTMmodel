@@ -172,7 +172,7 @@ if __name__ == '__main__':
         title="{} of intermediate and deep cores (> {} m depth)\n(Depth difference > {} m)".format(
             r'$\Delta \delta^{18}$O', cut_off, threshold
         ),
-        save_fig=True,
+        save_fig=False,
         depth_threshold=threshold
     )
 

@@ -13,10 +13,10 @@ from methods.kn_cluster_analysis.kn_functions import assess_cluster_model
 def modern_oceans():
 
     # Paths to datasets
-    plio_pac_path = "data/outliers_removed/pacific_pliocene.csv"
-    mod_atlan_path = "data/outliers_removed/modern_atlantic.csv"
+    plio_pac_path = "data/pacific_pliocene.csv"
+    mod_atlan_path = "data/selected_core_tops/atlantic_core_tops.csv"
     mod_pac_path = "data/outliers_removed/pacific_modern.csv"
-    mod_ocean_path = "data/outliers_removed/modern_oceans.csv"
+    mod_ocean_path = "data/all_core_tops.csv"
 
     title = "Comparative Modern/Pliocene Clusters"
 
