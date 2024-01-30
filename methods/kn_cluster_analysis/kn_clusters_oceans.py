@@ -10,7 +10,7 @@ from methods.general.general_constants import time_sets, kmeans_kwargs, axis_arg
 from methods.kn_cluster_analysis.kn_functions import assess_cluster_model
 
 
-def modern_oceans():
+def generate_modern_ocean_clusters():
 
     # Paths to datasets
     plio_pac_path = "data/pacific_pliocene.csv"
@@ -21,7 +21,7 @@ def modern_oceans():
     title = "Comparative Modern/Pliocene Clusters"
 
     # Read the dataset into pandas dataframes
-    pandas_data = read_csv(mod_atlan_path)
+    pandas_data = read_csv(mod_ocean_path)
 
     # Overlay the Pliocene Data
     plio_data = read_csv(plio_pac_path)
@@ -155,4 +155,4 @@ def modern_oceans():
 
 if __name__ == "__main__":
     chdir("../..")
-    modern_oceans()
+    generate_modern_ocean_clusters()
